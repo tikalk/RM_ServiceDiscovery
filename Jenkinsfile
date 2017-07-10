@@ -1,5 +1,5 @@
 node('linux-host-slave') {
-    def mvnHome = tool 'maven-3'
+    def mvnHome = tool 'M3'
     def image = docker.build("329054710135.dkr.ecr.eu-west-2.amazonaws.com/discovery_service:${BUILD_NUMBER}")
     stages {
         stage('Build & Push Image') {            
