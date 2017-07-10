@@ -3,9 +3,10 @@ pipeline {
         label 'linux-host-slave'
     }
     stages {
-        def mvnHome = tool 'maven-3'
-        def image = docker.build("329054710135.dkr.ecr.eu-west-2.amazonaws.com/discovery_service:${BUILD_NUMBER}")
+
         stage('Build & Push Image') {
+            def mvnHome = tool 'maven-3'
+            def image = docker.build("329054710135.dkr.ecr.eu-west-2.amazonaws.com/discovery_service:${BUILD_NUMBER}")
             environment {
                 AWS_ECR_LOGIN='true'
                 AWS_ECR_LOGIN_REGISTRY_IDS='329054710135'
