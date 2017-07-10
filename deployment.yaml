@@ -1,0 +1,18 @@
+apiVersion: apps/v1beta1
+kind: Deployment
+metadata:
+  name: discovery_service
+  namespace: fuze
+spec:
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: discovery_service
+    spec:
+      containers:
+      - name: discovery_service
+        image: 329054710135.dkr.ecr.eu-west-2.amazonaws.com/discovery_service:BUILDNUMBER
+        ports:
+        - containerPort: 8080
+Contact GitHub API Training Shop Blog About
