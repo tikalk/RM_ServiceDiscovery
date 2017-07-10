@@ -24,7 +24,7 @@ node('linux-host-slave') {
         sh(script: """
         sed -i 's/BUILDNUMBER/${BUILD_NUMBER}/g' deployment.yaml
         ./kubectl apply -f deployment.yaml --kubeconfig=\$(pwd)/kconfig --namespace fuze
-        ./kubectl get pods --namespace fuze -l app=RM_ServiceDiscovery &> /dev/null
+        ./kubectl get pods --namespace fuze -l app=discovery_service &> /dev/null
         """, returnStatus: false, returnStdout: false)
       }
 
