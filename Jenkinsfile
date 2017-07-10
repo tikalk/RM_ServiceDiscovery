@@ -10,7 +10,6 @@ pipeline {
                 AWS_DEFAULT_REGION='eu-west-2'
                 AWS_REGION='eu-west-2'
             }
-            steps {
                 sh "\$(\${HOME}/.local/bin/aws ecr get-login --no-include-email &> /dev/null)"
                 sh "cp \${HOME}/.docker/config.json \${HOME}/.dockercfg"
 		
@@ -21,7 +20,6 @@ pipeline {
                     def image = docker.build("329054710135.dkr.ecr.eu-west-2.amazonaws.com/discovery_service:${BUILD_NUMBER}")
                     image.push()
                 }
-            }
         }
     }
 }
