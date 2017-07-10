@@ -19,6 +19,14 @@ node('linux-host-slave') {
                 }
            }
         }
+        
+        stage ('Deploy to K8S') {
+        sh(script: """
+        sed -i 's/BUILDNUMBER/${BUILD_NUMBER}/g' deployment.yaml
+        ./kubectl apply -f deployment.yaml --kubeconfig=\$(pwd)/kconfig --namespace fuze
+        ./kubectl get pods --namespace fuze -l app=RM_ServiceDiscovery &> /dev/null
+        """, returnStatus: false, returnStdout: false)
+      }
 
     }
 }
